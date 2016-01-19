@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by Alex on 19/01/2016.
  */
 public class FormServlet extends HttpServlet {
-    
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
