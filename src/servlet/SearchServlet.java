@@ -42,7 +42,7 @@ public class SearchServlet extends HttpServlet {
                         search);
 
         //Use CompositeFilter to combine multiple filters
-        Filter allFilter = CompositeFilterOperator.or(titleFilter,descriptionFilter);
+        Filter allFilter = CompositeFilterOperator.or(titleFilter, descriptionFilter);
 
 
         Query q=new Query(DatabaseInfo.TRAINING_DATABASE).setFilter(allFilter);
