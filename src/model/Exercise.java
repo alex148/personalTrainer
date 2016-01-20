@@ -2,6 +2,7 @@ package model;
 
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.repackaged.com.google.common.base.Flag;
 import utils.DatabaseInfo;
 
@@ -14,6 +15,7 @@ public class Exercise {
     private int seconde;
     private String title;
     private String description;
+    private Key key;
 
     public Exercise(Entity entity) {
         this.hour =(int) entity.getProperty(DatabaseInfo.EXERCISE_HOUR);
@@ -21,6 +23,15 @@ public class Exercise {
         this.seconde = (int) entity.getProperty(DatabaseInfo.EXERCISE_SECONDE);
         this.title = entity.getProperty(DatabaseInfo.EXERCISE_TITLE).toString();
         this.description = entity.getProperty(DatabaseInfo.EXERCISE_DESCRIPTION).toString();
+        key=entity.getKey();
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
     }
 
     public int getHour() {

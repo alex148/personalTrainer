@@ -1,6 +1,7 @@
 package model;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 import utils.DatabaseInfo;
 
 import java.util.ArrayList;
@@ -14,12 +15,23 @@ public class Training {
     private String description;
     private String domain;
     private List<Exercise> exercises;
+    private Key key;
 
     public Training(Entity entity) {
         this.title = entity.getProperty(DatabaseInfo.TRAINING_TITLE).toString();
         this.description = entity.getProperty(DatabaseInfo.TRAINING_DESCRIPTION).toString();
         this.domain = entity.getProperty(DatabaseInfo.TRAINING_DOMAIN).toString();
+        key=entity.getKey();
         exercises=new ArrayList<>();
+
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
     }
 
     public String getTitle() {
