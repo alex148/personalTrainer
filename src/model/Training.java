@@ -26,6 +26,11 @@ public class Training {
 
     }
 
+    public Training(){
+        key = null;
+        exercises = new ArrayList<>();
+    }
+
     public Key getKey() {
         return key;
     }
@@ -64,5 +69,9 @@ public class Training {
 
     public void addExercise(Exercise exercise){
         exercises.add(exercise);
+    }
+
+    public void setExercises(List<Exercise> ex){
+        this.exercises = ex;
     }
 }
