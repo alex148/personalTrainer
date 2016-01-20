@@ -137,20 +137,19 @@ function sendTraining(){
     var tbl = $('#exercices tr:has(td)').map(function(i, v) {
         var $td =  $('td', this);
         return {
-            id: $td.eq(0).text(),
+            numero: $td.eq(0).text(),
             title: $td.eq(1).text(),
             description: $td.eq(2).text(),
             duration: $td.eq(3).text()
         }
     }).get();
-    
     $.post(
         "addTraining",
         {
             exercises : JSON.stringify(tbl),
             title : $("#inputTitle").val(),
             description : $("#inputDescription").val(),
-            domaine : $("#e1").val()
+            domain : $("#e1").val()
         }
         )
         .success(function(data){

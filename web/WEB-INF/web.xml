@@ -28,11 +28,20 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SplashServlet</servlet-name>
-        <url-pattern>/splashscreen</url-pattern>
+        <url-pattern>/splashservlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RssServlet</servlet-name>
+        <servlet-class>servlet.RssServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RssServlet</servlet-name>
+        <url-pattern>/rss</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>loginForm.html</welcome-file>
+        <welcome-file>splashscreen.html</welcome-file>
     </welcome-file-list>
 
 </web-app>

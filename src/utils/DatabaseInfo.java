@@ -16,6 +16,8 @@ public class DatabaseInfo {
     public static String EXERCISE_SECONDE="seconde";
     public static String EXERCISE_TITLE="title";
     public static String EXERCISE_DESCRIPTION="description";
+    public static String EXERCISE_NUMERO="numero";
+    public static String EXERCISE_DURATION="duration";
 
 
 }

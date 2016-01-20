@@ -41,9 +41,9 @@ public class SplashServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         String msg = getDescription(datastore);
-        req.setAttribute("msg", msg);
-        RequestDispatcher view = req.getRequestDispatcher("splashscreen.html");
-        view.forward(req, resp);
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(msg);
+
     }
 
     private String getDescription(DatastoreService datastore) {
@@ -63,6 +63,7 @@ public class SplashServlet extends HttpServlet {
 
         if (cache.get(MSG_LABEL) != null) {
             return (String) cache.get(MSG_LABEL);
+
         } else {
             String msgDatastore = null;
             Query q = new Query("SPLASHMSG");
@@ -78,3 +79,5 @@ public class SplashServlet extends HttpServlet {
         }
     }
 }
+
+

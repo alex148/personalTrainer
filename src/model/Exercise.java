@@ -15,15 +15,22 @@ public class Exercise {
     private int seconde;
     private String title;
     private String description;
+    private int numero;
     private Key key;
+    private Key parentKey;
 
     public Exercise(Entity entity) {
         this.hour =(int) entity.getProperty(DatabaseInfo.EXERCISE_HOUR);
         this.minute = (int) entity.getProperty(DatabaseInfo.EXERCISE_MINUTE);
         this.seconde = (int) entity.getProperty(DatabaseInfo.EXERCISE_SECONDE);
+        this.numero = (int) entity.getProperty(DatabaseInfo.EXERCISE_NUMERO);
         this.title = entity.getProperty(DatabaseInfo.EXERCISE_TITLE).toString();
         this.description = entity.getProperty(DatabaseInfo.EXERCISE_DESCRIPTION).toString();
         key=entity.getKey();
+    }
+
+    public Exercise(){
+        key = null;
     }
 
     public Key getKey() {
@@ -72,5 +79,21 @@ public class Exercise {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public Key getParentKey() {
+        return parentKey;
+    }
+
+    public void setParentKey(Key parentKey) {
+        this.parentKey = parentKey;
     }
 }
