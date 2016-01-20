@@ -13,6 +13,15 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SplashServlet</servlet-name>
+        <servlet-class>servlet.SplashServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SplashServlet</servlet-name>
+        <url-pattern>/splashscreen</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>loginForm.html</welcome-file>
     </welcome-file-list>
