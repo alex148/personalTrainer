@@ -2,6 +2,8 @@ package servlet;
 
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
+import com.google.appengine.labs.repackaged.org.json.JSONException;
+import com.google.appengine.labs.repackaged.org.json.JSONObject;
 import model.Training;
 import utils.DatabaseInfo;
 
@@ -17,39 +19,40 @@ import java.util.ArrayList;
  */
 public class PersonalServlet extends HttpServlet {
 
+    private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONArray tableau= new JSONArray();
 
-        Query q=new Query("");
+        Query q=new Query("TRAINING");
+        PreparedQuery prepq = datastore.prepare(q);
 
-    }
-/*
-    private ArrayList<Training> trainingSearch(){
+        for (Entity result : prepq.asIterable()) {
 
-       DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
+            String date =  (String)result.getProperty("date");
+            String planTitle = (String) result.getProperty("titre");
+            String status = (String) result.getProperty("status");
+            String duration = (String) result.getProperty("duration");
+            String timeExpected = (String) result.getProperty("timeExpected");
 
-        Query.Filter titleFilter =
-                new Query.FilterPredicate(DatabaseInfo.TRAINING_TITLE,
-                        Query.FilterOperator.IN,
-                        search);
+            JSONObject trainingData = new JSONObject();
+            try {
 
-        Query.Filter descriptionFilter =
-                new Query.FilterPredicate(DatabaseInfo.TRAINING_DESCRIPTION,
-                        Query.FilterOperator.IN,
-                        search);
+                trainingData.put("date", date);
+                trainingData.put("titre", planTitle);
+                trainingData.put("status", status);
+                trainingData.put("duration", duration);
+                trainingData.put("timeExpected", timeExpected);
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            tableau.put(trainingData);
 
-        //Use CompositeFilter to combine multiple filters
-        Query.Filter allFilter = Query.CompositeFilterOperator.or(titleFilter, descriptionFilter);
 
-
-        Query q=new Query(DatabaseInfo.TRAINING_DATABASE).setFilter(allFilter);
-        PreparedQuery pq=datastore.prepare(q);
-
-        for(Entity e:pq.asIterable()){
-            trainings.add(new Training(e));
         }
-        return trainings;
-    }*/
+        resp.getWriter().print(tableau.toString());
+    }
+
 }

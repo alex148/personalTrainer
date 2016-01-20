@@ -42,7 +42,11 @@ public class SplashServlet extends HttpServlet {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         String msg = getDescription(datastore);
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(msg);
+        if(msg!=null) {
+            resp.getWriter().write(msg);
+        }else{
+            resp.getWriter().write("");
+        }
 
     }
 
