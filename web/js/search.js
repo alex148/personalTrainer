@@ -7,3 +7,7 @@ function goToResult(){
     alert(search);
     $.get("/Search?search="+search);
 }
+
+function sendDomain(domain){
+    document.location.href="/Search?domain="+domain;
+}
