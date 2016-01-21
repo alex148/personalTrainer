@@ -134,6 +134,7 @@ function isInteger(str) {
 }
 
 function sendTraining(){
+    var durationTotal = $("#durationTotal").html();
     var tbl = $('#exercices tr:has(td)').map(function(i, v) {
         var $td =  $('td', this);
         return {
@@ -149,7 +150,8 @@ function sendTraining(){
             exercises : JSON.stringify(tbl),
             title : $("#inputTitle").val(),
             description : $("#inputDescription").val(),
-            domain : $("#e1").val()
+            domain : $("#e1").val(),
+            durationTotal: durationTotal
         }
         )
         .success(function(data){

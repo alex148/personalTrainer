@@ -9,6 +9,9 @@ public class DatabaseInfo {
     public static String TRAINING_TITLE="title";
     public static String TRAINING_DESCRIPTION="description";
     public static String TRAINING_DOMAIN="domain";
+    public static String TRAINING_USER_MAIL="userMail";
+    public static String TRAINING_TOTAL_DURATION="durationTotal";
+
 
     public static String EXERCISE_DATABASE="EXERCISE";
     public static String EXERCISE_HOUR="hour";

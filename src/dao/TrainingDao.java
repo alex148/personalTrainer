@@ -1,5 +1,9 @@
 package dao;
 
+import com.google.appengine.api.datastore.DatastoreApiHelper;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.repackaged.com.google.api.client.util.Data;
 import com.google.appengine.api.datastore.*;
 import model.Exercise;
 import model.Training;
@@ -41,6 +45,8 @@ public class TrainingDao implements InterfaceDao<Training> {
             training.setProperty(DatabaseInfo.TRAINING_TITLE, object.getTitle());
             training.setProperty(DatabaseInfo.TRAINING_DOMAIN, object.getDomain());
             training.setProperty(DatabaseInfo.TRAINING_DESCRIPTION, object.getDescription());
+            training.setProperty(DatabaseInfo.TRAINING_USER_MAIL,object.getUserMail());
+            training.setProperty(DatabaseInfo.TRAINING_TOTAL_DURATION,object.getTotalDuration());
             Key trainingKey = dataStore.put(training);
 
             if(object.getExercises() != null && !object.getExercises().isEmpty()){
