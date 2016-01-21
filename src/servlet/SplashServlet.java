@@ -11,17 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
 import javax.cache.CacheException;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -35,53 +31,51 @@ import com.google.appengine.api.memcache.MemcacheService;
  */
 public class SplashServlet extends HttpServlet {
 
-    private static final String MSG_LABEL = "msg";
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        String msg = getDescription(datastore);
-        resp.setCharacterEncoding("UTF-8");
-        if(msg!=null) {
-            resp.getWriter().write(msg);
-        }else{
-            resp.getWriter().write("");
-        }
+        Entity DescriptionSplash=null;
 
-    }
+        public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-    private String getDescription(DatastoreService datastore) {
+            Map props = new HashMap();
+            props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
+            Cache cache=null;
 
-        //récupération du service Cache
-        Cache cache = null;
-        Map props = new HashMap();
-        props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
-        props.put(MemcacheService.SetPolicy.ADD_ONLY_IF_NOT_PRESENT, true);
-        try {
-            CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-            cache = cacheFactory.createCache(props);
+            try {
+                // Récupération du Cache
+                CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
+                cache = cacheFactory.createCache(props);
 
-        } catch (net.sf.jsr107cache.CacheException e) {
-            e.printStackTrace();
-        }
-
-        if (cache.get(MSG_LABEL) != null) {
-            return (String) cache.get(MSG_LABEL);
-
-        } else {
-            String msgDatastore = null;
-            Query q = new Query("SPLASHMSG");
-            PreparedQuery pq = datastore.prepare(q);
-
-            for (Entity result : pq.asIterable()) {
-                msgDatastore = (String) result.getProperty(MSG_LABEL);
+            } catch (net.sf.jsr107cache.CacheException e) {
+                e.printStackTrace();
             }
 
-            //udpate cache
-            cache.put(MSG_LABEL, msgDatastore);
-            return msgDatastore;
+            Key cleDescription = KeyFactory.createKey("Description", "idDescription");
+
+            DescriptionSplash = new Entity("Description","idDescription");
+            DescriptionSplash.setProperty("description", " Ce site est dédié à votre entrainement sportif et au suivi des exercices que vous effectuez");
+            datastore.put(DescriptionSplash);
+            String key ="message";
+            String value=null;
+            value=(String) cache.get(key);
+            if(value!=null){
+                resp.getWriter().write( value);
+            }
+            else{
+                try {
+                    DescriptionSplash = datastore.get(cleDescription);
+                    String message = (String) DescriptionSplash.getProperty("description");
+                    cache.put(key, message);
+                    resp.getWriter().write(message);
+                } catch (EntityNotFoundException e) {
+                   e.printStackTrace();
+                }
+            }
+        }
+        public void toDataStore(String description){
+
+
         }
     }
-}
+
 
 
