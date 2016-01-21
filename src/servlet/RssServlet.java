@@ -37,7 +37,7 @@ public class RssServlet extends HttpServlet {
                 Document doc;
                 doc = dBuilder.parse(in);
                 NodeList nList = doc.getElementsByTagName("item");
-                for (int i = 0; i < nList.getLength(); i++) {
+                for (int i = 0;i< 3; i++) { // i < nList.getLength()
                     Node currentNode = nList.item(i);
 
                     if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -54,20 +54,16 @@ public class RssServlet extends HttpServlet {
                     }
                 }
                 resp.getWriter().println(news);
-            } catch (SAXException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (DOMException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (JSONException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (ParserConfigurationException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
+            } catch (SAXException e) {
+                e.printStackTrace();
+            } catch (DOMException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
             } catch (IOException e) {
-                // ...
+                e.printStackTrace();
             }
         }
     }

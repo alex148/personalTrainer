@@ -45,7 +45,6 @@ public class PersonalServlet extends HttpServlet {
                 trainingData.put("duration", duration);
                 trainingData.put("timeExpected", timeExpected);
             } catch (JSONException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             tableau.put(trainingData);
