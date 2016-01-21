@@ -1,11 +1,11 @@
 package dao;
 
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.*;
 import com.google.appengine.repackaged.com.google.api.client.util.Data;
 import model.Exercise;
 import utils.DatabaseInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,6 +56,33 @@ public class ExerciseDao implements InterfaceDao<Exercise> {
     public List<Exercise> getAll(String entityName) {
         return null;
     }
+    public ArrayList<Exercise> exerciseSearch(String search){
+        ArrayList<Exercise> exercises=new ArrayList<>();
+        DatastoreService datastore = DatastoreServiceFactory
+                .getDatastoreService();
 
+        Query.Filter titleFilter =
+                new Query.FilterPredicate(DatabaseInfo.EXERCISE_TITLE,
+                        Query.FilterOperator.EQUAL,
+                        search);
+
+        Query.Filter descriptionFilter =
+                new Query.FilterPredicate(DatabaseInfo.EXERCISE_DESCRIPTION,
+                        Query.FilterOperator.EQUAL
+                        ,
+                        search);
+
+        //Use CompositeFilter to combine multiple filters
+        Query.Filter allFilter = Query.CompositeFilterOperator.or(titleFilter,descriptionFilter);
+
+
+        Query q=new Query(DatabaseInfo.EXERCISE_DATABASE).setFilter(allFilter);
+        PreparedQuery pq=datastore.prepare(q);
+
+        for(Entity e:pq.asIterable()){
+            exercises.add(new Exercise(e));
+        }
+        return exercises;
+    }
 
 }

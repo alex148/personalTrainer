@@ -3,5 +3,5 @@ $.get("/splashservlet", function (msg) {
 });
 
 setTimeout(function () {
-    window.location = 'ha-search-screen.html';
+    window.location = '/Search';
 }, 5000);

@@ -60,11 +60,11 @@ function addExercice(){
 
     //create new exercise
     var newExercice = "<tr>" +
-            "<td name='exId'>"+lastId+"</td>"+
-            "<td name='exTitle'>"+title+"</td>"+
-            "<td class='hidden-xs' name='exDesc'>"+description+"</td>"+
-            "<td name='exDuration'>"+hours+":"+minutes+":"+secondes+"</td>"+
-            "<td> <button type='button' class='deleteLink btn btn-danger btn-sm'> <span class='glyphicon glyphicon-remove'></span> </button></td>"+
+        "<td name='exId'>"+lastId+"</td>"+
+        "<td name='exTitle'>"+title+"</td>"+
+        "<td class='hidden-xs' name='exDesc'>"+description+"</td>"+
+        "<td name='exDuration'>"+hours+":"+minutes+":"+secondes+"</td>"+
+        "<td> <button type='button' class='deleteLink btn btn-danger btn-sm'> <span class='glyphicon glyphicon-remove'></span> </button></td>"+
         "</tr>";
 
     //add exercise in table

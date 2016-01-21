@@ -4,13 +4,14 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import utils.DatabaseInfo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Robin on 19/01/2016.
  */
-public class Training {
+public class Training implements  Serializable{
     private String title;
     private String description;
     private String domain;

@@ -39,6 +39,22 @@
         <servlet-name>RssServlet</servlet-name>
         <url-pattern>/rss</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>servlet.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ResultServlet</servlet-name>
+        <servlet-class>servlet.ResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResultServlet</servlet-name>
+        <url-pattern>/Result</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>ConnexionServlet</servlet-name>

@@ -6,10 +6,12 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.repackaged.com.google.common.base.Flag;
 import utils.DatabaseInfo;
 
+import java.io.Serializable;
+
 /**
  * Created by Robin on 19/01/2016.
  */
-public class Exercise {
+public class Exercise implements Serializable {
     private int hour;
     private int minute;
     private int seconde;
@@ -20,10 +22,10 @@ public class Exercise {
     private Key parentKey;
 
     public Exercise(Entity entity) {
-        this.hour =(int) entity.getProperty(DatabaseInfo.EXERCISE_HOUR);
-        this.minute = (int) entity.getProperty(DatabaseInfo.EXERCISE_MINUTE);
-        this.seconde = (int) entity.getProperty(DatabaseInfo.EXERCISE_SECONDE);
-        this.numero = (int) entity.getProperty(DatabaseInfo.EXERCISE_NUMERO);
+        this.hour =Integer.parseInt((entity.getProperty(DatabaseInfo.EXERCISE_HOUR).toString()));
+        this.minute = Integer.parseInt((entity.getProperty(DatabaseInfo.EXERCISE_MINUTE).toString()));
+        this.seconde = Integer.parseInt((entity.getProperty(DatabaseInfo.EXERCISE_SECONDE).toString()));
+        this.numero = Integer.parseInt((entity.getProperty(DatabaseInfo.EXERCISE_NUMERO).toString()));
         this.title = entity.getProperty(DatabaseInfo.EXERCISE_TITLE).toString();
         this.description = entity.getProperty(DatabaseInfo.EXERCISE_DESCRIPTION).toString();
         key=entity.getKey();
