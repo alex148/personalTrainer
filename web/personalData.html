@@ -9,7 +9,8 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/select2-3.5.1/select2.css" rel="stylesheet">
-
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="254711276396-uhscgamoi1g0imbtpt8u9b5r2ubsecv4.apps.googleusercontent.com">
     <link href="css/js.css" rel="stylesheet">
 
 
@@ -23,6 +24,14 @@
             <button type="submit" class="btn btn-link " style="margin:0px padding:0px" onclick="history.back()"><span class="glyphicon glyphicon-arrow-left "></span> </button>
             <label> <h5 style="color:white"> Personal Data</h5></label>
         </form>
+    </div>
+
+    <div id="headerInfos">
+        <span id="userInfos" style="color:white;"></span>
+        <div id="signInButton" class="g-signin2 col-md-1 col-sm-1 col-xs-1" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <button type="button" onclick="signOut()" class="btn btn-link" id="disconnectButton"> <span class="glyphicon glyphicon-remove-circle"></span> </button>
+        <button id="personalButton" type="submit" class="btn btn-link" onclick="window.location='personalData.html'"><span class="glyphicon glyphicon-user"></span> </button>
+        <button id="statButton" type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-stats"></span> </button>
     </div>
 
 
@@ -47,6 +56,8 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.min.js"></script>
 <script src="/lib/select2-3.5.1/select2.min.js"></script>
-
+<script src="js/connexion.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

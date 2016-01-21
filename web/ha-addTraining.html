@@ -9,6 +9,7 @@
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script src="js/addTraining.js"></script>
       <script src="js/jquery.js"></script>
+      <script src="js/connexion.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
       <title>Bootstrap 101 Template</title>
 
@@ -28,16 +29,17 @@
         <div class=" col-md-10 col-sm-10 col-xs-10 ">
             <form class="navbar-form navbar-left"  style="width:100%" role="search">
                  <button type="submit" class="btn btn-link " style="margin:0px padding:0px" onclick="history.back()"><span class="glyphicon glyphicon-arrow-left "></span> </button>
-                 <label> <h5 style="color:white"> Add a Training Plan</h5></label>
+                 <label> <h5 style="color:white"> Go to previous</h5></label>
           </form>
         </div>
 
-        <div class="g-signin2 col-md-1 col-sm-1 col-xs-1" data-onsuccess="onSignIn" data-theme="dark"></div>
 
-        <div class=" col-md-1 col-sm-1 col-xs-1 ">
-
-                <button type="submit" class="btn btn-link" onclick="window.location='personalData.html'"><span class="glyphicon glyphicon-user"></span> </button>
-                <button type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-stats"></span> </button>
+        <div id="headerInfos">
+                <span id="userInfos" style="color:white;"></span>
+                <div id="signInButton" class="g-signin2 col-md-1 col-sm-1 col-xs-1" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <button type="button" onclick="signOut()" class="btn btn-link" id="disconnectButton"> <span class="glyphicon glyphicon-remove-circle"></span> </button>
+                <button id="personalButton" type="submit" class="btn btn-link" onclick="window.location='personalData.html'"><span class="glyphicon glyphicon-user"></span> </button>
+                <button id="statButton" type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-stats"></span> </button>
         </div>
       </nav>
       <!-- ------------------------------------------- HEADER ZONE END ------------------------------------------- -->

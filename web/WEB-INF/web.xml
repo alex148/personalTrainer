@@ -40,6 +40,24 @@
         <url-pattern>/rss</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ConnexionServlet</servlet-name>
+        <servlet-class>servlet.ConnexionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnexionServlet</servlet-name>
+        <url-pattern>/connexion</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeconnexionServlet</servlet-name>
+        <servlet-class>servlet.DeconnexionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeconnexionServlet</servlet-name>
+        <url-pattern>/deconnexion</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>splashscreen.html</welcome-file>
     </welcome-file-list>

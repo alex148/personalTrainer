@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="254711276396-uhscgamoi1g0imbtpt8u9b5r2ubsecv4.apps.googleusercontent.com">
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
@@ -25,12 +27,12 @@
         </form>
     </div>
 
-    <div class=" col-md-2 col-sm-2 col-xs-2 ">
-        <div class="navbar-form navbar-left" style="width:100%" role="search">
-            <button type="submit" class="btn btn-link" onclick="window.location='personalData.html'"><span
-                    class="glyphicon glyphicon-user"></span></button>
-            <button type="submit" class="btn btn-link"><span class="glyphicon glyphicon-stats"></span></button>
-        </div>
+    <div id="headerInfos">
+        <span id="userInfos" style="color:white;"></span>
+        <div id="signInButton" class="g-signin2 col-md-1 col-sm-1 col-xs-1" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <button type="button" onclick="signOut()" class="btn btn-link" id="disconnectButton"> <span class="glyphicon glyphicon-remove-circle"></span> </button>
+        <button id="personalButton" type="submit" class="btn btn-link" onclick="window.location='personalData.html'"><span class="glyphicon glyphicon-user"></span> </button>
+        <button id="statButton" type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-stats"></span> </button>
     </div>
 </nav>
 <!-- ------------------------------------------- HEADER ZONE END ------------------------------------------- -->
@@ -85,10 +87,12 @@
 <!-- ------------------------------------------- FOOTER ZONE END ------------------------------------------- -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/rss.js"></script>
+<script src="js/connexion.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

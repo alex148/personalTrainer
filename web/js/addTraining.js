@@ -153,7 +153,7 @@ function sendTraining(){
         }
         )
         .success(function(data){
-            alert('!!!!');
+            toastr.success("Training has been added successfully!");
         });
 
 }
