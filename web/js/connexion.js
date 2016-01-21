@@ -32,10 +32,10 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
+    deconnexion();
     window.localStorage.name = null;
     window.localStorage.mail = null;
     window.localStorage.id_token = null;
-    deconnexion();
     checkIfUserConnected();
 }
 
@@ -67,6 +67,9 @@ function deconnexion(){
     $.post(
         "deconnexion",
         {
+            name : window.localStorage.name,
+            mail : window.localStorage.mail,
+            id_token : window.localStorage.id_token
         }
         )
         .success(function(data){
