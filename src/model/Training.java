@@ -15,6 +15,8 @@ public class Training implements  Serializable{
     private String title;
     private String description;
     private String domain;
+    private String userMail;
+    private String totalDuration;
     private List<Exercise> exercises;
     private Key key;
 
@@ -74,5 +76,21 @@ public class Training implements  Serializable{
 
     public void setExercises(List<Exercise> ex){
         this.exercises = ex;
+    }
+
+    public String getUserMail() {
+        return userMail;
+    }
+
+    public void setUserMail(String userMail) {
+        this.userMail = userMail;
+    }
+
+    public String getTotalDuration() {
+        return totalDuration;
+    }
+
+    public void setTotalDuration(String totalDuration) {
+        this.totalDuration = totalDuration;
     }
 }

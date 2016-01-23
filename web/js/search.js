@@ -6,3 +6,7 @@ function goToResult(){
     var search=$("#searchBar").val();
     $.get("/Search?search="+search);
 }
+
+function sendDomain(domain){
+    document.location.href="/Search?domain="+domain;
+}
