@@ -4,14 +4,22 @@
 $(function () {
 
     var search = queryParameters.search;
+    var domain="null";
+    try {
+        domain = queryParameters.domain;
+    }
+    catch(err) {
+    }
+
     $.post(
         "Result",
         {
-            search: search
+            search: search,
+            domain : domain
         }
         )
         .success(function (data) {
-            var json = $.parseJSON(data)
+            var json = $.parseJSON(data);
             $.each(json.trainingsList, function (key, data) {
                 var newTraining = '<div class=" col-md-6 col-sm-6 col-xs-6">' +
                     '<button type="submit" onclick="getDetail('+data.key.id+',\''+data.key.kind+'\',null)" class="btn btn-link">' + data.title + '</button>' +
@@ -40,6 +48,11 @@ function getDetail(key,type,parent){
     }else {
         document.location.href = ("/Detail?key=" + key + "&type=" + type);
     }
+}
+
+function search(){
+    var search=$("#searchBar").val();
+    document.location.href = ("/Result?search=" + search);
 }
 var queryParameters = function () {
     var query_string = {};

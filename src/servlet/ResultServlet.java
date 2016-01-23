@@ -32,9 +32,17 @@ public class ResultServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ExerciseDao exerciseDao=new ExerciseDao();
         TrainingDao trainingDao=new TrainingDao();
-        String search=req.getParameter("search");//req.getAttribute(SEARCH_BAR).toString();
-        ArrayList<Training> trainings=trainingDao.trainingSearch(search);
-        ArrayList<Exercise> exercises=exerciseDao.exerciseSearch(search);
+        String search=req.getParameter("search");
+        String domain=req.getParameter("domain");
+        ArrayList<Training> trainings = trainingDao.trainingSearch(search);
+        ArrayList<Exercise> exercises = exerciseDao.exerciseSearch(search);
+        if(domain=="") {
+            trainings = trainingDao.trainingSearch(search);
+            exercises = exerciseDao.exerciseSearch(search);
+        }
+        if(domain!=null){
+            trainings=trainingDao.trainingSearchByDomain(search);
+        }
         Gson gson = new Gson();
 
         String trainingsJson = gson.toJson(trainings);

@@ -97,4 +97,20 @@ public class TrainingDao implements InterfaceDao<Training> {
         }
         return trainings;
     }
+    public ArrayList<Training> trainingSearchByDomain(String domain){
+        ArrayList<Training> trainings=new ArrayList<>();
+
+        Query.Filter domainFilter =
+                new Query.FilterPredicate(DatabaseInfo.TRAINING_DOMAIN,
+                        Query.FilterOperator.EQUAL,
+                        domain);
+
+        Query q=new Query(DatabaseInfo.TRAINING_DATABASE).setFilter(domainFilter);
+        PreparedQuery pq=dataStore.prepare(q);
+
+        for(Entity e:pq.asIterable()){
+            trainings.add(new Training(e));
+        }
+        return trainings;
+    }
 }
