@@ -15,7 +15,12 @@ public class ExerciseDao implements InterfaceDao<Exercise> {
 
     @Override
     public Exercise getByKey(Key key) {
-        return null;
+        try {
+            return(new Exercise(dataStore.get(key)));
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -58,8 +63,6 @@ public class ExerciseDao implements InterfaceDao<Exercise> {
     }
     public ArrayList<Exercise> exerciseSearch(String search){
         ArrayList<Exercise> exercises=new ArrayList<>();
-        DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
 
         Query.Filter titleFilter =
                 new Query.FilterPredicate(DatabaseInfo.EXERCISE_TITLE,
@@ -77,8 +80,17 @@ public class ExerciseDao implements InterfaceDao<Exercise> {
 
 
         Query q=new Query(DatabaseInfo.EXERCISE_DATABASE).setFilter(allFilter);
-        PreparedQuery pq=datastore.prepare(q);
+        PreparedQuery pq=dataStore.prepare(q);
 
+        for(Entity e:pq.asIterable()){
+            exercises.add(new Exercise(e));
+        }
+        return exercises;
+    }
+    public List<Exercise> getExercisesFromParentKey(Key parentKey){
+        ArrayList<Exercise> exercises=new ArrayList<>();
+        Query q=new Query(DatabaseInfo.EXERCISE_DATABASE).setAncestor(parentKey);
+        PreparedQuery pq=dataStore.prepare(q);
         for(Entity e:pq.asIterable()){
             exercises.add(new Exercise(e));
         }

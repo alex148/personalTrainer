@@ -55,6 +55,14 @@
         <servlet-name>ResultServlet</servlet-name>
         <url-pattern>/Result</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DetailServlet</servlet-name>
+        <servlet-class>servlet.DetailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DetailServlet</servlet-name>
+        <url-pattern>/Detail</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>ConnexionServlet</servlet-name>

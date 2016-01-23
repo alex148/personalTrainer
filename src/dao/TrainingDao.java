@@ -21,7 +21,12 @@ public class TrainingDao implements InterfaceDao<Training> {
 
     @Override
     public Training getByKey(Key key) {
-        return null;
+        try {
+            return(new Training(dataStore.get(key)));
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -63,8 +68,6 @@ public class TrainingDao implements InterfaceDao<Training> {
 
     public ArrayList<Training> trainingSearch(String search){
         ArrayList<Training> trainings=new ArrayList<>();
-        DatastoreService datastore = DatastoreServiceFactory
-                .getDatastoreService();
 
         Query.Filter titleFilter =
                 new Query.FilterPredicate(DatabaseInfo.TRAINING_TITLE,
@@ -81,7 +84,7 @@ public class TrainingDao implements InterfaceDao<Training> {
 
 
         Query q=new Query(DatabaseInfo.TRAINING_DATABASE).setFilter(allFilter);
-        PreparedQuery pq=datastore.prepare(q);
+        PreparedQuery pq=dataStore.prepare(q);
 
         for(Entity e:pq.asIterable()){
             trainings.add(new Training(e));

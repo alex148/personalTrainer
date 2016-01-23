@@ -4,6 +4,5 @@
 
 function goToResult(){
     var search=$("#searchBar").val();
-    alert(search);
     $.get("/Search?search="+search);
 }

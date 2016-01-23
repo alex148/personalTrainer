@@ -14,7 +14,7 @@ $(function () {
             var json = $.parseJSON(data)
             $.each(json.trainingsList, function (key, data) {
                 var newTraining = '<div class=" col-md-6 col-sm-6 col-xs-6">' +
-                    '<button type="submit" class="btn btn-link">' + data.title + '</button>' +
+                    '<button type="submit" onclick="getDetail('+data.key.id+',\''+data.key.kind+'\',null)" class="btn btn-link">' + data.title + '</button>' +
                     '</div>' +
                     '<div class=" col-md-6 col-sm-6 col-xs-6"> ' +
                     '<label class="btn"> <span class="glyphicon glyphicon-time"></span> 50 min. </label> ' +
@@ -23,7 +23,7 @@ $(function () {
             });
             $.each(json.exercisesList, function (key, data) {
                 var newExercise = '<div class=" col-md-6 col-sm-6 col-xs-6"> ' +
-                    '<button type="submit" class="btn btn-link">'+data.title+'</button> ' +
+                    '<button type="submit" onclick="getDetail('+data.key.id+',\''+data.key.kind+'\','+data.key.parentKey.id+')" class="btn btn-link">'+data.title+'</button> ' +
                     '</div> ' +
                     '<div class=" col-md-6 col-sm-6 col-xs-6"> ' +
                     '<label class="btn"> <span class="glyphicon glyphicon-time"></span> ' + data.hour + ':' + data.minute + ':' + data.seconde +
@@ -34,6 +34,13 @@ $(function () {
         });
 });
 
+function getDetail(key,type,parent){
+    if(type=="EXERCISE"){
+        document.location.href = ("/Detail?key=" + key + "&type=" + type +"&parent="+parent);
+    }else {
+        document.location.href = ("/Detail?key=" + key + "&type=" + type);
+    }
+}
 var queryParameters = function () {
     var query_string = {};
     var query = window.location.search.substring(1);
