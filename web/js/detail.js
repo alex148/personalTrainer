@@ -33,11 +33,11 @@ $(function () {
                     '<div class="row"> ' +
                     '<div class=" col-md-1 col-sm-0 col-xs-0 " ></div> ' +
                     '<div class=" col-md-6 col-sm-12 col-xs-12 "> ' +
-                    '<p>data.description</p> ' +
+                    '<p>'+data.description+'</p> ' +
                     '</div> ' +
                     '<div class=" col-md-3 col-sm-12 col-xs-12 "> ' +
                     '<div class=" col-md-12 col-sm-12 col-xs-12 "> ' +
-                    '<div id="flipcountdownbox"' + i + '> ' +
+                    '<div id="flipcountdownbox' + i + '"> ' +
                     '</div> ' +
                     '</div> ' +
                     '<div class=" col-md-12 col-sm-12 col-xs-12 centered"> ' +
