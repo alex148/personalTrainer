@@ -145,7 +145,7 @@ function sendTraining(){
         }
     }).get();
     $.post(
-        "addTraining",
+        "taskQueue",
         {
             exercises : JSON.stringify(tbl),
             title : $("#inputTitle").val(),

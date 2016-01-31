@@ -21,12 +21,12 @@
 <!-- ------------------------------------------- HEADER ZONE ------------------------------------------- -->
 <nav class="navbar navbar-inverse" role="navigation">
     <div class=" col-md-10 col-sm-10 col-xs-10 ">
-        <form class="navbar-form navbar-left" style="width:100%" role="search">
-            <button type="button" onclick="search()" class="btn btn-default">Search</button>
-            <div class="form-group" style="width:90%">
-                <input id="searchBar" type="text" style="width:100%" class="form-control" placeholder="Search">
-            </div>
-        </form>
+            <form id="searchForm" class="navbar-form navbar-left" style="width:100%" role="search">
+                <button type="button" onclick="search()" class="btn btn-default">Search</button>
+                <div class="form-group" style="width:90%">
+                    <input id="searchBar" type="text" style="width:100%" class="form-control" placeholder="Search">
+                </div>
+            </form>
     </div>
 
     <div id="headerInfos">
@@ -61,7 +61,7 @@
 <!-- ------------------------------------------- FOOTER ZONE ------------------------------------------- -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
     <div class=" col-md-10 col-sm-10 col-xs-10 ">
-        <form class="navbar-form navbar-left" style="width:100%" role="search" action="/addTraining">
+        <form id="addTrainingForm" class="navbar-form navbar-left" style="width:100%" role="search" action="/addTraining">
             <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-plus-sign"></span></button>
             <label style="color:white">Add a Training Plan</label>
         </form>

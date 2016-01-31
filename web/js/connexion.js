@@ -46,6 +46,8 @@ function checkIfUserConnected(){
         $("#userInfos").text(window.localStorage.name);
         $("#personalButton").show();
         $("#statButton").show();
+        $("#addTrainingForm").show();
+        $("#searchForm").show();
 
     }else{
         $("#signInButton").show();
@@ -53,6 +55,8 @@ function checkIfUserConnected(){
         $("#userInfos").text("");
         $("#personalButton").hide();
         $("#statButton").hide();
+        $("#addTrainingForm").hide();
+        $("#searchForm").hide();
 
 
     }
